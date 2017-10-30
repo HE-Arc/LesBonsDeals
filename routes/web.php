@@ -19,4 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/article/{n}','ArticleController@show')->where('n','[0-9]+');
+Route::get('/articles/{n}','ArticleController@show')->where('n','[0-9]+');
+
+Route::resource('articles', 'Front\ContactController', ['only' => ['create', 'store']]);
