@@ -16,12 +16,11 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->text('description');
             $table->double('price');
             $table->integer('quantity');
-            $table->integer('id_category')->unsigned();
-            $table->foreign('id_category')->references('id')->on('categories');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->integer('user_id');
+            $table->integer('category_id');
             $table->integer('number_of_view');
             $table->timestamps();
         });

@@ -11,10 +11,17 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
+        $category = new \App\Category([
+            'title' => 'Bijoux'
+        ]);
+
+        $category->save();
+
+
         $listCategories = ['Informatique','Automobile','Animal'];
         foreach ($listCategories as $category){
             DB::table('categories')->insert([
-                'categorie' => $category,
+                'title' => $category,
             ]);
         }
     }

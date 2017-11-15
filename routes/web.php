@@ -11,14 +11,20 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/', 'ArticleController@getIndex')->name('index');
+
+Route::get('/test','ArticleController@addArticle');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/articles/{n}','ArticleController@show')->where('n','[0-9]+');
+Route::get('/article/{n}','ArticleController@show')->where('n','[0-9]+')->name('article.show');
 
-Route::resource('articles', 'Front\ContactController', ['only' => ['create', 'store']]);
+Route::resource('article', 'Front\ContactController', ['only' => ['create', 'store']]);
