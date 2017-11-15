@@ -16,7 +16,7 @@ class ArticleTableSeeder extends Seeder
     public function run()
     {
         $user = User::find(1);
-        $category = Category::where("title","Informatique")->first();
+        $category = Category::where("title", "Informatique")->first();
 
         $article = new Article([
             'title' => 'Samsung Galaxy S6',

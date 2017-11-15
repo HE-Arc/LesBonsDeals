@@ -1,23 +1,50 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>All Articles</title>
-</head>
-<body>
-<h1>All articles</h1>
-@foreach($articles as $article)
-    <div class="row">
-        <div class="col-md-12">
-            <p><strong>{{$article->title}}</strong></p>
-            <p>Description: {{$article->description}}</p>
-            <p>price: {{$article->price}}</p>
-            <p><a href="{{route('article.show',['id' => $article->id])}}">More détails</a></p>
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Récent</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($latestArticles as $article)
+                <a href="{{route('article.show',['id' => $article->id])}}">
+                    <div class="card mx-2" style="width: 14rem;">
+                        <img class="card-img-top img-fluid " src="{{URL::asset('/images/articles/sample.png')}}"
+                             alt="Card image cap">
+                        <div class="card text-center bg-light">
+                            <div class="card-body">
+                                <h4 class="card-title">{{$article->title}}</h4>
+                                <p class="card-text">{{$article->price}}.-</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+        <div class="row mt-5 mb-2">
+            <div class="col-sm-12">
+                <h1>Les plus populaires</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($articlesMostViewed as $article)
+                <a href="{{route('article.show',['id' => $article->id])}}">
+                    <div class="card mx-2" style="width: 14rem;">
+                        <img class="card-img-top img-fluid " src="{{URL::asset('/images/articles/sample.png')}}"
+                             alt="Card image cap">
+                        <div class="card text-center bg-light">
+                            <div class="card-body">
+                                <h4 class="card-title">{{$article->title}}</h4>
+                                <p class="card-text">{{$article->price}}.-</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
         </div>
     </div>
-@endforeach
-</body>
-</html>
+@endsection

@@ -9,8 +9,15 @@ class ArticleController extends Controller
 {
     public function getIndex()
     {
-        $articles = Article::all();
-        return view('index', ['articles' => $articles]);
+        //get most viewed articles
+        $articlesMostViewed = Article::orderBy('number_of_view','desc')->get();
+
+        //get latest articles
+        $latestArticles = Article::latest()->limit(4)->get();
+        return view('index', [
+            'latestArticles' => $latestArticles,
+            'articlesMostViewed' => $articlesMostViewed
+            ]);
     }
 
     public function show($id)
@@ -29,7 +36,7 @@ class ArticleController extends Controller
 
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $article = Article::find($id);
         $article->delete();
