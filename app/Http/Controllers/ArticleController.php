@@ -11,9 +11,9 @@ class ArticleController extends Controller
     {
         //get most viewed articles
         $articlesMostViewed = Article::orderBy('number_of_view','desc')->get();
-
         //get latest articles
         $latestArticles = Article::latest()->limit(4)->get();
+
         return view('index', [
             'latestArticles' => $latestArticles,
             'articlesMostViewed' => $articlesMostViewed
@@ -38,10 +38,11 @@ class ArticleController extends Controller
 
     public function destroy($id)
     {
-        $article = Article::find($id);
-        $article->delete();
+        //$article = Article::find($id);
+        //$article->delete();
         //TODO: redirect to the correct page...
-        return redirect()->route('index')->with('info','Article deleted');
+        //return redirect()->route('index')->with('info','Article deleted');
+        return "hello";
     }
 
     public function addArticle(){

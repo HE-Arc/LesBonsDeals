@@ -25,8 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //get /articles avec paramètres
 
-Route::get('/article/{n}','ArticleController@show')->where('n','[0-9]+')->name('article.show');
+//Route::get('/article/{n}','ArticleController@show')->where('n','[0-9]+')->name('article.show');
 
-Route::resource('article', 'ArticleController', ['only' => ['create', 'store', 'edit','destroy']]);
+Route::resource('article', 'ArticleController', ['only' => ['show','create', 'store', 'edit','destroy']]);
 
 

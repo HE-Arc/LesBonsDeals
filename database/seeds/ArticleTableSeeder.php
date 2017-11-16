@@ -40,5 +40,60 @@ class ArticleTableSeeder extends Seeder
         $article->user()->associate($user);
         $article->save();
 
+        $article = new Article([
+            'title' => 'Iphone 7',
+            'price' => 800.0,
+            'description' => "I'm pro apple that's why I'm selling this",
+            'quantity' => '1',
+        ]);
+
+        $article->category()->associate($category);
+        $article->user()->associate($user);
+        $article->save();
+
+        $article = new Article([
+            'title' => 'Iphone 7',
+            'price' => 800.0,
+            'description' => "I'm pro apple that's why I'm selling this",
+            'quantity' => '1',
+        ]);
+
+        $article->category()->associate($category);
+        $article->user()->associate($user);
+        $article->save();
+
+        $article = new Article([
+            'title' => 'Iphone 7',
+            'price' => 800.0,
+            'description' => "I'm pro apple that's why I'm selling this",
+            'quantity' => '1',
+        ]);
+
+        $article->category()->associate($category);
+        $article->user()->associate($user);
+        $article->save();
+
+        $article = new Article([
+            'title' => 'Iphone 7',
+            'price' => 800.0,
+            'description' => "I'm pro apple that's why I'm selling this",
+            'quantity' => '1',
+        ]);
+
+        $article->category()->associate($category);
+        $article->user()->associate($user);
+        $article->save();
+
+        $article = new Article([
+            'title' => 'Iphone 7',
+            'price' => 800.0,
+            'description' => "I'm pro apple that's why I'm selling this",
+            'quantity' => '1',
+        ]);
+
+        $article->category()->associate($category);
+        $article->user()->associate($user);
+        $article->save();
+
     }
 }
