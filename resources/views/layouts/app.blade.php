@@ -15,6 +15,8 @@
     {{--<link href="{{ asset('css/master.css') }}" rel="stylesheet">--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
     @yield('include')
 
@@ -30,8 +32,8 @@
 
         <div class="collapse navbar-collapse" id="navContent">
             <form class="form-inline ml-md-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Que cherchez-vous?" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Chercher</button>
             </form>
             <ul class="navbar navbar-nav ml-md-auto">
                 @if (Auth::check())

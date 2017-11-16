@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Category;
 
 class ArticleController extends Controller
 {
@@ -14,10 +15,18 @@ class ArticleController extends Controller
         //get latest articles
         $latestArticles = Article::latest()->limit(4)->get();
 
+        //get the menu items
+        $categories = Category::orderBy('title')->get();
+
         return view('index', [
             'latestArticles' => $latestArticles,
-            'articlesMostViewed' => $articlesMostViewed
+            'articlesMostViewed' => $articlesMostViewed,
+            'categories' => $categories
             ]);
+    }
+
+    public function find($name){
+
     }
 
     public function show($id)
