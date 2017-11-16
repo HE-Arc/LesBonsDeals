@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
         <a class="navbar-brand" href="{{route('index')}}">LesBonsDeals</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent"
                 aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
