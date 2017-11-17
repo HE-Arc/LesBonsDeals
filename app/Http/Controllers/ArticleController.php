@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
+use App\Http\Controllers\CommentController;
 
 class ArticleController extends Controller
 {
@@ -31,8 +32,14 @@ class ArticleController extends Controller
 
     public function show($id)
     {
+        //get all the comments about this article
+        $comments = CommentController::getAllCommentsByArticleId($id);
+
         $article = Article::find($id);
-        return view('article', ['article' => $article]);
+        return view('article', [
+            'article' => $article,
+            'comments' => $comments
+        ]);
     }
 
     public function create()

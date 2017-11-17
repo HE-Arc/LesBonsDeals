@@ -35,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <h1>Description</h1>
+                <h1> <i class="material-icons">description</i> Description</h1>
                 <hr>
             </div>
         </div>
@@ -45,15 +45,48 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-12 mt-4">
+                <h1><i class="material-icons">comment</i> Commentaires</h1>
+                <hr>
+                @foreach($comments as $comment)
+                    <p>{{$comment->user->name}}: {{$comment->comment}}</p>
+                @endforeach
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12">
-                <h1>Commentaires</h1>
+                <form>
+                    <div class="form-group">
+                        <label class="col-form-label" for="comment"><h4>Ajouter un commentaire</h4></label>
+                        <input type="text" class="form-control" id="comment" placeholder="Votre commentaire">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="#" class="btn btn-primary btn-lg " role="button" >Commenter</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 mt-5">
+                <h1><i class="material-icons">perm_contact_calendar</i> Contact</h1>
                 <hr>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <h1>Contact</h1>
-                <hr>
+                <form>
+                    <div class="form-group">
+                        <label class="col-form-label" for="contact"><h4>Message pour le vendeur</h4></label>
+                        <input type="text" class="form-control" id="contact" placeholder="Votre message">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="#" class="btn btn-primary btn-lg " role="button" >Envoyer</a>
             </div>
         </div>
     </div>
