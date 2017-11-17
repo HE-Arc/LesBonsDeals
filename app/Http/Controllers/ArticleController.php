@@ -44,7 +44,7 @@ class ArticleController extends Controller
 
     public function create()
     {
-        return "ArticleController: created function()";
+
     }
 
     public function store()

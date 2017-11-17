@@ -23,6 +23,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/home/articles','HomeController@manageArticles')->name('manage_articles');
+
+Route::get('/home/settings','HomeController@settings')->name('settings');
+
 //get /articles avec paramètres
 
 //Route::get('/article/{n}','ArticleController@show')->where('n','[0-9]+')->name('article.show');
