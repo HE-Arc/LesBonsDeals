@@ -31,3 +31,4 @@ Route::get('/search/{name}','ArticleController@find')->name('article.find');
 Route::resource('article', 'ArticleController', ['only' => ['show','create', 'store', 'edit','destroy']]);
 
 
+
