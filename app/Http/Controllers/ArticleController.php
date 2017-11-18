@@ -12,7 +12,7 @@ class ArticleController extends Controller
     public function getIndex()
     {
         //get most viewed articles
-        $articlesMostViewed = Article::orderBy('number_of_view','desc')->get();
+        $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->get();
         //get latest articles
         $latestArticles = Article::latest()->limit(4)->get();
 
@@ -23,11 +23,18 @@ class ArticleController extends Controller
             'latestArticles' => $latestArticles,
             'articlesMostViewed' => $articlesMostViewed,
             'categories' => $categories
-            ]);
+        ]);
     }
 
-    public function find($name){
+    public function find($name)
+    {
 
+    }
+
+    public function edit($id)
+    {
+        $article = Article::find($id);
+        return view('admin.article.edit', ['article' => $article]);
     }
 
     public function show($id)
@@ -61,7 +68,8 @@ class ArticleController extends Controller
         return "hello";
     }
 
-    public function addArticle(){
+    public function addArticle()
+    {
         $category = Category::find(1);
         $user = User::find(1);
         //$category = Category::where("title","Informatique")->first();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -33,6 +34,10 @@ class HomeController extends Controller
     }
 
     public function manageArticles(){
-        return view('user.articles');
+        //Get all articles of the current user
+        $user = Auth::user();
+        $articles = Article::where("user_id", '=',$user->id)->get();
+
+        return view('user.articles',['articles'=> $articles]);
     }
 }
