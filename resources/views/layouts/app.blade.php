@@ -43,7 +43,7 @@
                             {{Auth::user()->name }}
                         </a>
 
-                        <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
                             <a class="dropdown-item" href="{{ route('home') }}">
                                 Mon compte
                             </a>
