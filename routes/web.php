@@ -28,7 +28,7 @@ Route::get('/home/articles', 'HomeController@manageArticles')->name('manage_arti
 
 Route::get('/home/sell', 'HomeController@sellArticle')->name('sell_article');
 
-Route::post('/home', 'ArticleController@store')->name('store_article');
+Route::post('/home/sell', 'ArticleController@store')->name('store_article');
 
 Route::get('/home/settings', 'HomeController@settings')->name('settings');
 
@@ -38,6 +38,4 @@ Route::get('/home/settings', 'HomeController@settings')->name('settings');
 Route::get('/search/{name}', 'ArticleController@find')->name('article.find');
 
 Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy']]);
-
-
 

@@ -56,7 +56,17 @@ class ArticleController extends Controller
 
     public function store()
     {
-        return redirect('/');
+        $this->validate(request(), [
+            'title' => 'required|min:1|max:30',
+            'description' => 'required|max:512',
+            'price' => 'required|min:0',
+            'quantity' => 'required|min:1|max:10000',
+            'category' => 'required'
+        ]);
+
+        //Article::create(request(['title', 'description']));
+
+        return redirect()->route('home');
     }
 
     public function destroy($id)

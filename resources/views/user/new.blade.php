@@ -10,14 +10,13 @@
         </div>
         <div class="col">
             <div class="col-sm-12">
-                <form method="post" action="/home">
+                <form method="POST" action="{{ route('store_article') }}">
 
                     {{ csrf_field() }}
 
                     <div class="form-group">
                         <label for="">Titre</label>
-                        <input type="text" class="form-control" id="title" placeholder="Titre de votre annonce"
-                               required>
+                        <input type="text" class="form-control" id="title" placeholder="Titre de votre annonce">
                     </div>
 
                     <div class="form-group">
@@ -25,11 +24,9 @@
                             <div class="col-md-4 mb-3">
                                 <label for="category">Catégorie</label>
                                 <select class="form-control" id="category">
-                                    <option>cat 1</option>
-                                    <option>cat 2</option>
-                                    <option>cat 3</option>
-                                    <option>cat 4</option>
-                                    <option>cat 5</option>
+                                    @foreach($categories as $category)
+                                        <option>$category->title</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -54,24 +51,22 @@
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" rows="5" placeholder="Decrivez votre annonce"
-                                  required></textarea>
+                        <textarea class="form-control" id="description" rows="5"
+                                  placeholder="Decrivez votre annonce"></textarea>
                     </div>
 
-                    <form>
-                        <div class="form-group">
-                            <label for="image">Image</label>
-                            <input type="file" class="form-control-file" id="image" accept="image/*">
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control-file" id="image" accept="image/*">
+                    </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
 
                 </form>
 
                 @include('layouts.errors')
 
+                </form>
             </div>
-        </div>
     </section>
 @endsection
