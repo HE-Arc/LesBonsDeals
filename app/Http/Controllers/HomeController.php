@@ -40,4 +40,8 @@ class HomeController extends Controller
 
         return view('user.articles',['articles'=> $articles]);
     }
+
+    public function sellArticle(){
+        return view('user.new');
+    }
 }

@@ -56,7 +56,7 @@ class ArticleController extends Controller
 
     public function store()
     {
-
+        return redirect('/');
     }
 
     public function destroy($id)
