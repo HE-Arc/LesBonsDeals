@@ -17,6 +17,8 @@
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/pressuru" type="text/css"/>
+    <link rel="stylesheet" href="{{URL::asset("/css/master.css")}}" type="text/css"/>
 
     @yield('include')
 
@@ -24,7 +26,9 @@
 <body>
 <div id="app">
     <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
-        <a class="navbar-brand" href="{{route('index')}}">LesBonsDeals</a>
+        <a id="home-logo" class="navbar-brand" href="{{route('index')}}">LesBonsDeals</a>
+        <a href="{{route('index')}}"><img src="{{URL::asset("/images/logo.png")}}" alt="Logo" width="90"/></a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent"
                 aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
