@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
 use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -64,7 +65,17 @@ class ArticleController extends Controller
             'category' => 'required'
         ]);
 
-        //Article::create(request(['title', 'description']));
+        $category = Category::where('title', request('category'))->get();
+
+        Article::create([
+            'title' => request('title'),
+            'description' => request('description'),
+            'price' => request('price'),
+            'quantity' => request('quantity'),
+            'user_id' => auth()->id(),
+            'category_id' => $category->first()->id,
+            'number_of_view' => 0
+        ]);
 
         return redirect()->route('home');
     }
