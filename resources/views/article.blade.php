@@ -20,9 +20,9 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="fotorama">
-                    <img src="{{URL::asset('/images/articles/1/1_1.jpg')}}">
-                    <img src="{{URL::asset('/images/articles/1/1_2.jpg')}}">
-                    <img src="{{URL::asset('/images/articles/1/1_3.jpg')}}">
+                    @foreach($article->pictures as $picture)
+                    <img src="{{URL::asset($picture->path)}}">
+                        @endforeach
                 </div>
             </div>
             <div class="col-sm-6">

@@ -27,7 +27,6 @@ class ArticleController extends Controller
         return view('index', [
             'latestArticles' => $latestArticles,
             'articlesMostViewed' => $articlesMostViewed,
-            'categories' => $categories
         ]);
     }
 
