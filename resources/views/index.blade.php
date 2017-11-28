@@ -3,23 +3,7 @@
 @section('content')
     <div class="container-fluid bg-light pt-4">
         <div class="row">
-            <!-- MENU -->
-            <section class="col-sm-auto mr-5 ml-3">
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <h2>Catégories</h2>
-                        <hr>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="list-group" id="list-tab" role="tablist">
-                            @foreach($categories as $category)
-                            <a class="list-group-item list-group-item-action" id="list-home-list"
-                               data-toggle="list" href="#list-home" role="tab" aria-controls="home">{{$category->title}}</a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </section>
+           @include('menu.category')
             <!-- Content index-->
             <section class="col">
                 <div class="row">

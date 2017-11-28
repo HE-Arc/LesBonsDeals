@@ -12,13 +12,20 @@ class ArticleController extends Controller
 {
     public function getIndex()
     {
-        //get most viewed articles
-        $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->get();
-        //get latest articles
-        $latestArticles = Article::latest()->limit(4)->get();
 
         //get the menu items
         $categories = Category::orderBy('title')->get();
+
+        //get latest/most viewed articles
+        if (isset($_GET['category'])) {
+            $category = $_GET['category'];
+            $category_id = Category::where('title', $category)->first(['id']);
+            $articlesMostViewed = Article::where('category_id',$category_id->id)->orderBy('number_of_view', 'desc')->get();
+            $latestArticles = Article::where('category_id',$category_id->id)->latest()->limit(4)->get();
+        } else {
+            $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->get();
+            $latestArticles = Article::latest()->limit(4)->get();
+        }
 
         return view('index', [
             'latestArticles' => $latestArticles,
