@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
 use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -53,7 +54,27 @@ class ArticleController extends Controller
 
     public function store()
     {
+        $this->validate(request(), [
+            'title' => 'required|min:1|max:30',
+            'description' => 'required|max:512',
+            'price' => 'required|min:0',
+            'quantity' => 'required|min:1|max:10000',
+            'category' => 'required'
+        ]);
 
+        $category = Category::where('title', request('category'))->get();
+
+        Article::create([
+            'title' => request('title'),
+            'description' => request('description'),
+            'price' => request('price'),
+            'quantity' => request('quantity'),
+            'user_id' => auth()->id(),
+            'category_id' => $category->first()->id,
+            'number_of_view' => 0
+        ]);
+
+        return redirect()->route('home');
     }
 
     public function destroy($id)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -37,5 +38,11 @@ class HomeController extends Controller
         //Get all articles of the current user
         $user = Auth::user();
         return view('user.articles',['articles'=> $user->articles]);
+    }
+
+    public function sellArticle(){
+        $categories = Category::all();
+
+        return view('user.new', compact('categories'));
     }
 }

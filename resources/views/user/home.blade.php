@@ -16,6 +16,8 @@
                                href="{{route('manage_articles')}}" role="tab" aria-controls="home">Articles mis en
                                 vente</a>
                             <a class="list-group-item list-group-item-action" id="list-home-list"
+                               href="{{route('sell_article')}}" role="tab" aria-controls="home">Vendre un article</a>
+                            <a class="list-group-item list-group-item-action" id="list-home-list"
                                href="{{route('settings')}}" role="tab" aria-controls="home">Gestion du
                                 compte</a>
                         </div>

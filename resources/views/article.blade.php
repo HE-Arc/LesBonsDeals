@@ -35,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <h1> <i class="material-icons">description</i> Description</h1>
+                <h1><i class="material-icons">description</i> Description</h1>
                 <hr>
             </div>
         </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 text-center">
-                <a href="#" class="btn btn-primary btn-lg " role="button" >Commenter</a>
+                <a href="#" class="btn btn-primary btn-lg " role="button">Commenter</a>
             </div>
         </div>
         <div class="row">
@@ -86,7 +86,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 text-center">
-                <a href="#" class="btn btn-primary btn-lg " role="button" >Envoyer</a>
+                <a href="#" class="btn btn-primary btn-lg " role="button">Envoyer</a>
             </div>
         </div>
     </div>
