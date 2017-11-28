@@ -45,7 +45,7 @@
 <div class="form-group">
     <label for="description">Description</label>
     <textarea class="form-control" name="description" id="description" rows="5"
-              placeholder="Decrivez votre annonce" value="{{ old('description') }}"></textarea>
+              placeholder="Decrivez votre annonce">{{ old('description') }}</textarea>
 </div>
 
 <div class="form-group">
@@ -53,4 +53,4 @@
     <input type="file" class="form-control-file" name="image" id="image" accept="image/*">
 </div>
 
-<button type="submit" class="btn btn-primary" value="submit">Submit</button>
+<button type="submit" class="btn btn-primary" value="submit">Mettre en ligne</button>

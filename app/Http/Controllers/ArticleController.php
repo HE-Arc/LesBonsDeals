@@ -17,8 +17,8 @@ class ArticleController extends Controller
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
             $category_id = Category::where('title', $category)->first(['id']);
-            $articlesMostViewed = Article::where('category_id',$category_id->id)->orderBy('number_of_view', 'desc')->limit(15)->get();
-            $latestArticles = Article::where('category_id',$category_id->id)->latest()->limit(15)->get();
+            $articlesMostViewed = Article::where('category_id', $category_id->id)->orderBy('number_of_view', 'desc')->limit(15)->get();
+            $latestArticles = Article::where('category_id', $category_id->id)->latest()->limit(15)->get();
         } else {
             $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->limit(15)->get();
             $latestArticles = Article::latest()->limit(15)->get();
@@ -51,6 +51,29 @@ class ArticleController extends Controller
         ]);
     }
 
+    public function update($id)
+    {
+        $this->validate(request(), [
+            'title' => 'required|min:1|max:30',
+            'description' => 'required|max:512',
+            'price' => 'required|min:0',
+            'quantity' => 'required|min:1|max:10000',
+            'category' => 'required'
+        ]);
+
+        $category = Category::where('title', request('category'))->first();
+
+        $article = Article::findOrFail($id);
+        $article->title = request('title');
+        $article->description = request('description');
+        $article->price = request('price');
+        $article->quantity = request('quantity');
+        $article->category()->associate($category);
+        $article->save();
+
+        return redirect()->route('home');
+    }
+
     public function show($id)
     {
         $article = Article::findOrFail($id);
@@ -63,7 +86,9 @@ class ArticleController extends Controller
 
     public function create()
     {
+        $categories = Category::all();
 
+        return view('article.create', compact('categories'));
     }
 
     public function store()

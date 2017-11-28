@@ -11,12 +11,6 @@
 |
 */
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-
 Route::get('/', 'ArticleController@getIndex')->name('index');
 
 Auth::routes();
@@ -26,10 +20,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home/articles', 'HomeController@manageArticles')->name('manage_articles');
 
-Route::get('/home/sell', 'HomeController@sellArticle')->name('sell_article');
-
-Route::post('/home/sell', 'ArticleController@store')->name('store_article');
-
 Route::get('/home/settings', 'HomeController@settings')->name('settings');
 
 //get /articles avec paramètres
@@ -37,5 +27,5 @@ Route::get('/home/settings', 'HomeController@settings')->name('settings');
 //Route::get('/article/{n}','ArticleController@show')->where('n','[0-9]+')->name('article.show');
 Route::get('/search', 'ArticleController@find')->name('article_find');
 
-Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy']]);
+Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
 
