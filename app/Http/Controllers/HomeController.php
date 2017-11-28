@@ -27,11 +27,11 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('user.personal',['user'=>$user]);
+        return view('home.personal',['user'=>$user]);
     }
 
     public function settings(){
-        return view('user.manage');
+        return view('home.manage');
     }
 
     public function manageArticles(){
@@ -39,12 +39,12 @@ class HomeController extends Controller
         $user = Auth::user();
         $articles = Article::where("user_id", '=',$user->id)->get();
 
-        return view('user.articles',['articles'=> $articles]);
+        return view('home.articles',['articles'=> $articles]);
     }
 
     public function sellArticle(){
         $categories = Category::all();
 
-        return view('user.new', compact('categories'));
+        return view('article.create', compact('categories'));
     }
 }

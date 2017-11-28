@@ -1,4 +1,4 @@
-@extends('user.home')
+@extends('home.home')
 
 @section('specific_content')
     <section class="col">
