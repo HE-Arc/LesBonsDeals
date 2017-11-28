@@ -7,12 +7,6 @@ use App\Comment;
 
 class CommentController extends Controller
 {
-    public static function getAllCommentsByArticleId($id)
-    {
-        return Comment::where('article_id',$id)->get();
-    }
-
-
     /**
      * Display a listing of the resource.
      *
