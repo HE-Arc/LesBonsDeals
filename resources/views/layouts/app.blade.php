@@ -35,9 +35,11 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navContent">
-            <form class="form-inline ml-md-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Que cherchez-vous?" aria-label="Search">
+            <form class="form-inline ml-md-auto" action="{{route('article_find')}}">
+                <input name="name" class="form-control mr-sm-2" type="search" placeholder="Que cherchez-vous?"
+                       aria-label="Search">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Chercher</button>
+                {{csrf_field()}}
             </form>
             <ul class="navbar navbar-nav ml-md-auto">
                 @if (Auth::check())

@@ -27,9 +27,12 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function find($name)
+    public function find(Request $request)
     {
-
+        $name = $request->input('name');
+        //$articles = Article::find($name);
+        $articles = Article::where('title', 'like', "%$name%")->get();
+        return view('search.articles', ['articles' => $articles]);
     }
 
     public function edit($id)
