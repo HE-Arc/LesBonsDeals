@@ -15,9 +15,9 @@
                     {{ csrf_field() }}
 
                     <div class="form-group">
-                        <label for="">Titre</label>
+                        <label for="title">Titre</label>
                         <input type="text" class="form-control" name="title" id="title"
-                               placeholder="Titre de votre annonce">
+                               placeholder="Titre" title="Titre de votre annonce">
                     </div>
 
                     <div class="form-group">
