@@ -38,18 +38,15 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        return view('admin.article.edit', ['article' => $article]);
+        return view('article.edit', ['article' => $article]);
     }
 
     public function show($id)
     {
-        //get all the comments about this article
-        $comments = CommentController::getAllCommentsByArticleId($id);
-
         $article = Article::find($id);
         return view('article', [
             'article' => $article,
-            'comments' => $comments
+            'comments' => $article->comments
         ]);
     }
 
