@@ -17,11 +17,11 @@ class ArticleController extends Controller
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
             $category_id = Category::where('title', $category)->first(['id']);
-            $articlesMostViewed = Article::where('category_id', $category_id->id)->orderBy('number_of_view', 'desc')->get();
-            $latestArticles = Article::where('category_id', $category_id->id)->latest()->limit(4)->get();
+            $articlesMostViewed = Article::where('category_id',$category_id->id)->orderBy('number_of_view', 'desc')->limit(15)->get();
+            $latestArticles = Article::where('category_id',$category_id->id)->latest()->limit(15)->get();
         } else {
-            $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->get();
-            $latestArticles = Article::latest()->limit(4)->get();
+            $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->limit(15)->get();
+            $latestArticles = Article::latest()->limit(15)->get();
         }
 
         return view('index', [
