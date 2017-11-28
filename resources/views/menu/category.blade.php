@@ -1,5 +1,5 @@
 <!-- MENU -->
-<section class="col-sm-auto mr-5 ml-3">
+<div class="col">
     <div class="row">
         <div class="col-sm-12 text-center">
             <h2>Catégories</h2>
@@ -7,7 +7,7 @@
         </div>
         <div class="col-sm-12">
             <div class="list-group" id="list-tab" role="tablist">
-                @foreach($categories as $category)
+                @foreach(\App\Category::all() as $category)
                     <a class="list-group-item list-group-item-action
                                 @if(isset($_GET['category']) and $_GET['category'] == $category->title)
                             active
@@ -20,4 +20,4 @@
             </div>
         </div>
     </div>
-</section>
+</div>
