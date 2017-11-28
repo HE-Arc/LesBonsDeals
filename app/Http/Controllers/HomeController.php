@@ -37,7 +37,7 @@ class HomeController extends Controller
     public function manageArticles(){
         //Get all articles of the current user
         $user = Auth::user();
-        $articles = Article::where("user_id", '=',$user->id)->get();
+        $articles = $user->articles;
 
         return view('home.articles',['articles'=> $articles]);
     }

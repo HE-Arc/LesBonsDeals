@@ -12,7 +12,6 @@ class ArticleController extends Controller
 {
     public function getIndex()
     {
-
         //get the menu items
         $categories = Category::orderBy('title')->get();
 
@@ -20,8 +19,8 @@ class ArticleController extends Controller
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
             $category_id = Category::where('title', $category)->first(['id']);
-            $articlesMostViewed = Article::where('category_id',$category_id->id)->orderBy('number_of_view', 'desc')->get();
-            $latestArticles = Article::where('category_id',$category_id->id)->latest()->limit(4)->get();
+            $articlesMostViewed = Article::where('category_id', $category_id->id)->orderBy('number_of_view', 'desc')->get();
+            $latestArticles = Article::where('category_id', $category_id->id)->latest()->limit(4)->get();
         } else {
             $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->get();
             $latestArticles = Article::latest()->limit(4)->get();
@@ -44,13 +43,13 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
-        $article = Article::find($id);
+        $article = Article::findOrFail($id);
         return view('article.edit', ['article' => $article]);
     }
 
     public function show($id)
     {
-        $article = Article::find($id);
+        $article = Article::findOrFail($id);
         return view('article', [
             'article' => $article,
             'comments' => $article->comments
@@ -72,17 +71,31 @@ class ArticleController extends Controller
             'category' => 'required'
         ]);
 
-        $category = Category::where('title', request('category'))->get();
+        $category = Category::where('title', request('category'))->first();
+        $user = auth()->user();
 
-        Article::create([
+
+//        Article::create([
+//            'title' => request('title'),
+//            'description' => request('description'),
+//            'price' => request('price'),
+//            'quantity' => request('quantity'),
+//            'user_id' => auth()->id(),
+//            'category_id' => $category->first()->id,
+//            'number_of_view' => 0
+//        ]);
+
+        $article = new Article([
             'title' => request('title'),
             'description' => request('description'),
             'price' => request('price'),
             'quantity' => request('quantity'),
-            'user_id' => auth()->id(),
-            'category_id' => $category->first()->id,
             'number_of_view' => 0
         ]);
+
+        $article->user()->associate($user);
+        $article->category()->associate($category);
+        $article->save();
 
         return redirect()->route('home');
     }
@@ -94,25 +107,5 @@ class ArticleController extends Controller
         //TODO: redirect to the correct page...
         //return redirect()->route('index')->with('info','Article deleted');
         return "hello";
-    }
-
-    public function addArticle()
-    {
-        $category = Category::find(1);
-        $user = User::find(1);
-        //$category = Category::where("title","Informatique")->first();
-
-        $article = new Article([
-            'title' => 'Samsung Galaxy S6',
-            'price' => 600.0,
-            'quantity' => '1',
-            'number_of_view' => 0,
-        ]);
-
-        //$article->category()->associate($category);
-        //$article->user()->associate($user);
-        //$article->save();
-
-        $article->category()->save($category);
     }
 }
