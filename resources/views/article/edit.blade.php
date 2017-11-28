@@ -16,27 +16,38 @@
                         <label for="title">Titre</label>
                         <input type="text" class="form-control" id="title" value="{{$article->title}}">
                     </div>
+
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description">{{$article->description}}
                         </textarea>
                     </div>
+
                     <div class="form-group">
                         <label for="price">Prix</label>
                         <input class="form-control" id="price" type="number" step="0.05" value="{{$article->price}}">
                     </div>
+
                     <div class="form-group">
                         <label for="quantity">Quantité</label>
                         <input class="form-control" id="quantity" type="number" step="1" value="{{$article->quantity}}">
                     </div>
 
-                    <div class="form-group">
-                        <label for="category">Categorie</label>
-
-                    </div>
+                    <label for="category">Catégorie</label>
+                    <select class="form-control" name="category" id="category">
+                        @foreach($categories as $category)
+                            @if($category->id == $article->category_id)
+                                <option selected>{{$category->title}}</option>
+                            @else
+                                <option>{{$category->title}}</option>
+                            @endif
+                        @endforeach
+                    </select>
 
                     <button type="submit" class="btn btn-primary">Mettre à jour</button>
                 </form>
+
+                @include('layouts.errors')
             </div>
         </div>
     </section>

@@ -30,7 +30,6 @@
                 <p><b>Prix:</b> {{$article->price}}.-</p>
                 <p><b>Quantité disponible:</b> {{$article->quantity}}</p>
                 <p><b>Vendeur:</b> {{$article->user->name}}</p>
-                <a href="{{route('article.destroy',['id' => $article->id])}}">Delete Article</a>
             </div>
         </div>
         <div class="row">

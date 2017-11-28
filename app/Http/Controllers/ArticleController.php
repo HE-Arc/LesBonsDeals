@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
-use App\Http\Controllers\CommentController;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -36,20 +34,28 @@ class ArticleController extends Controller
     public function find(Request $request)
     {
         $name = $request->input('name');
-        //$articles = Article::find($name);
         $articles = Article::where('title', 'like', "%$name%")->get();
-        return view('search.articles', ['articles' => $articles]);
+
+        return view('search.articles', [
+            'articles' => $articles
+        ]);
     }
 
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        return view('article.edit', ['article' => $article]);
+        $categories = Category::all();
+
+        return view('article.edit', [
+            'article' => $article,
+            'categories' => $categories
+        ]);
     }
 
     public function show($id)
     {
         $article = Article::findOrFail($id);
+
         return view('article', [
             'article' => $article,
             'comments' => $article->comments
@@ -74,17 +80,6 @@ class ArticleController extends Controller
         $category = Category::where('title', request('category'))->first();
         $user = auth()->user();
 
-
-//        Article::create([
-//            'title' => request('title'),
-//            'description' => request('description'),
-//            'price' => request('price'),
-//            'quantity' => request('quantity'),
-//            'user_id' => auth()->id(),
-//            'category_id' => $category->first()->id,
-//            'number_of_view' => 0
-//        ]);
-
         $article = new Article([
             'title' => request('title'),
             'description' => request('description'),
@@ -102,10 +97,9 @@ class ArticleController extends Controller
 
     public function destroy($id)
     {
-        //$article = Article::find($id);
-        //$article->delete();
-        //TODO: redirect to the correct page...
-        //return redirect()->route('index')->with('info','Article deleted');
-        return "hello";
+        $article = Article::find($id);
+        $article->delete();
+
+        return redirect()->route('manage_articles');
     }
 }
