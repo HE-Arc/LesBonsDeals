@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $fillable = ['title','description','price','quantity','category_id'];
+    protected $fillable = ['title','description','price','quantity','category_id', 'user_id'];
     protected $attributes = ['number_of_view' => 0];
 
     public function comments(){

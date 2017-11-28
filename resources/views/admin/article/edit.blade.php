@@ -14,7 +14,7 @@
                 <form>
                     <div class="form-group">
                         <label for="title">Titre</label>
-                        <input type="text" class="form-control" id="tilte" value="{{$article->title}}">
+                        <input type="text" class="form-control" id="title" value="{{$article->title}}">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
