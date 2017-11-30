@@ -24,7 +24,11 @@
                                 <a href="{{route('article.show',['id' => $article->id])}}">
                                     <div class="card mx-2" style="width: 14rem;">
                                         <img class="card-img-top img-fluid "
+                                             @if(!$article->pictures->isEmpty())
+                                             src="{{URL::asset($article->pictures[0]->path)}}"
+                                             @else
                                              src="{{URL::asset('/images/articles/sample.png')}}"
+                                             @endif
                                              alt="Card image cap">
                                         <div class="card text-center">
                                             <div class="card-body">
