@@ -42,6 +42,7 @@ return [
     */
 
     'disks' => [
+        'default' => 'public',
 
         'local' => [
             'driver' => 'local',

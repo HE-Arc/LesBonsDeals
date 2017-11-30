@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Http\Requests\ArticleRequest;
+use App\Picture;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -56,12 +58,12 @@ class ArticleController extends Controller
         $this->validate(request(), [
             'title' => 'required|min:1|max:30',
             'description' => 'required|max:512',
-            'price' => 'required|min:0',
+            'price' => 'required|numeric|min:0',
             'quantity' => 'required|min:1|max:10000',
             'category' => 'required'
         ]);
 
-        $category = Category::where('title', request('category'))->first();
+        $category = Category::where('title', request('category'))->firstOrFail();
 
         $article = Article::findOrFail($id);
         $article->title = request('title');
@@ -91,17 +93,9 @@ class ArticleController extends Controller
         return view('article.create', compact('categories'));
     }
 
-    public function store()
+    public function store(ArticleRequest $request)
     {
-        $this->validate(request(), [
-            'title' => 'required|min:1|max:30',
-            'description' => 'required|max:512',
-            'price' => 'required|min:0',
-            'quantity' => 'required|min:1|max:10000',
-            'category' => 'required'
-        ]);
-
-        $category = Category::where('title', request('category'))->first();
+        $category = Category::where('title', request('category'))->firstOrFail();
         $user = auth()->user();
 
         $article = new Article([
@@ -115,6 +109,17 @@ class ArticleController extends Controller
         $article->user()->associate($user);
         $article->category()->associate($category);
         $article->save();
+
+        foreach ($request->image as $image) {
+            $filename = $image->store('images/articles');
+
+            $newImage = new Picture([
+                'path' => $filename
+            ]);
+
+            $newImage->article()->associate($article);
+            $newImage->save();
+        }
 
         return redirect()->route('home');
     }

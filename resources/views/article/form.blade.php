@@ -50,7 +50,7 @@
 
 <div class="form-group">
     <label for="image">Image</label>
-    <input type="file" class="form-control-file" name="image" id="image" accept="image/*">
+    <input class="form-control-file" type="file" data-preview="#preview" name="image[]" id="image" accept="image/*" multiple>
 </div>
 
 <button type="submit" class="btn btn-primary" value="submit">Mettre en ligne</button>

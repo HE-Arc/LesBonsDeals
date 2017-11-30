@@ -12,7 +12,7 @@
         <div class="col">
             <div class="col-sm-12">
 
-                <form method="POST" action="{{ route('article.store') }}">
+                <form method="POST" action="{{ route('article.store') }}" enctype="multipart/form-data">
 
                     @include('article.form')
 
