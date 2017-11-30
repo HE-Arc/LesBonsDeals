@@ -92,16 +92,24 @@ class ArticleController extends Controller
         return view('article.create', compact('categories'));
     }
 
-    public function store(ArticleRequest $request)
+    public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|min:1|max:30',
+            'description' => 'required|max:512',
+            'price' => 'required|min:0',
+            'quantity' => 'required|min:1|max:10000',
+            'category' => 'required'
+        ]);
+
         $category = Category::where('title', request('category'))->firstOrFail();
         $user = auth()->user();
 
         $article = new Article([
-            'title' => request('title'),
-            'description' => request('description'),
-            'price' => request('price'),
-            'quantity' => request('quantity'),
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
             'number_of_view' => 0
         ]);
 
