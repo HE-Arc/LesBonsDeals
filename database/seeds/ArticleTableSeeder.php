@@ -95,5 +95,30 @@ class ArticleTableSeeder extends Seeder
         $article->user()->associate($user);
         $article->save();
 
+        $category = Category::where("title", "Bijoux")->first();
+
+        $article = new Article([
+            'title' => 'Bague en or',
+            'price' => 600.0,
+            'description' => "Jolie bague en or 24 carra",
+            'quantity' => '1',
+        ]);
+
+        $category = Category::where("title", "Animal")->first();
+
+        $article->category()->associate($category);
+        $article->user()->associate($user);
+        $article->save();
+
+        $article = new Article([
+            'title' => 'Petit chat',
+            'price' => 50.0,
+            'description' => "Petit chat 3 mois",
+            'quantity' => '1',
+        ]);
+
+        $article->category()->associate($category);
+        $article->user()->associate($user);
+        $article->save();
     }
 }

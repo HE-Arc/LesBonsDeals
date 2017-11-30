@@ -19,8 +19,10 @@ class ArticleController extends Controller
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
             $category_id = Category::where('title', $category)->first(['id']);
+
             $articlesMostViewed = Article::where('category_id', $category_id->id)->orderBy('number_of_view', 'desc')->limit(15)->get();
             $latestArticles = Article::where('category_id', $category_id->id)->latest()->limit(15)->get();
+
         } else {
             $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->limit(15)->get();
             $latestArticles = Article::latest()->limit(15)->get();
@@ -34,12 +36,9 @@ class ArticleController extends Controller
 
     public function find(Request $request)
     {
-        $name = $request->input('name');
-        $articles = Article::where('title', 'like', "%$name%")->get();
-
-        return view('search.articles', [
-            'articles' => $articles
-        ]);
+        $query = $request->input('query');
+        $articles = Article::where('title', 'like', "%$query%")->get();
+        return view('search.articles', ['articles' => $articles]);
     }
 
     public function edit($id)

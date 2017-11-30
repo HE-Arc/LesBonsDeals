@@ -3,7 +3,8 @@
 @section('content')
     <div class="container-fluid bg-light pt-4">
         <div class="row">
-            <section class="col">
+            @include('menu.category')
+            <div class="col-sm-10">
                 <div class="row">
                     <div class="col-sm-12">
                         <h2>Résultats de la recherche</h2>
@@ -26,7 +27,7 @@
                         </a>
                     @endforeach
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 @endsection
