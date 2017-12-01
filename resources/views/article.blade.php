@@ -19,10 +19,10 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div class="fotorama">
+                <div class="fotorama bg-dark">
                     @foreach($article->pictures as $picture)
-                    <img src="{{URL::asset($picture->path)}}">
-                        @endforeach
+                        <img src="{{Storage::disk('articles')->url($picture->path)}}">
+                    @endforeach
                 </div>
             </div>
             <div class="col-sm-6">

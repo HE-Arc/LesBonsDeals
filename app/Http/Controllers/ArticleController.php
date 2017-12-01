@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Picture;
 use Illuminate\Http\Request;
 
@@ -117,11 +118,17 @@ class ArticleController extends Controller
         $article->category()->associate($category);
         $article->save();
 
+        //Create folder to store the image
+
+        if (!file_exists('images/articles/' . $article->id)) {
+            mkdir('images/articles/' . $article->id, 0664, true);
+        }
+
         foreach ($request->image as $image) {
-            $filename = $image->store('images/articles');
+            $storagePath= Storage::disk('articles')->put($article->id,$image);
 
             $newImage = new Picture([
-                'path' => $filename
+                'path' => $storagePath
             ]);
 
             $newImage->article()->associate($article);

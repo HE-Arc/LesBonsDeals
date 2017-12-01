@@ -17,11 +17,11 @@ class PictureTableSeeder extends Seeder
         $article = Article::find(2);
 
         $picture1 = new Picture([
-            'path' => "/images/articles/1/1_1.jpg"
+            'path' => "1/1_1.jpg"
         ]);
 
         $picture2 = new Picture([
-            'path' => "images/articles/1/1_2.jpg"
+            'path' => "1/1_2.jpg"
         ]);
 
         $picture1->article()->associate($article);
@@ -32,11 +32,11 @@ class PictureTableSeeder extends Seeder
 
 
         $picture1 = new Picture([
-            'path' => "/images/articles/2/2_0.jpg"
+            'path' => "2/2_0.jpg"
         ]);
 
         $picture2 = new Picture([
-            'path' => "images/articles/2/2_1.jpg"
+            'path' => "2/2_1.jpg"
         ]);
 
 
