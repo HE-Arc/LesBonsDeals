@@ -104,11 +104,11 @@ class ArticleTableSeeder extends Seeder
             'quantity' => '1',
         ]);
 
-        $category = Category::where("title", "Animal")->first();
-
         $article->category()->associate($category);
         $article->user()->associate($user);
         $article->save();
+
+        $category = Category::where("title", "Animal")->first();
 
         $article = new Article([
             'title' => 'Petit chat',
