@@ -10,6 +10,14 @@
         </div>
 
         <div class="col">
+            <div class="row">
+                <div class="col-sm-12">
+                    @include('layouts.status')
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
             <div class="col-sm-12">
                 <ul class="list-group">
 

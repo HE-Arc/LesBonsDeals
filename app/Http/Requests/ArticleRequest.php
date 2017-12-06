@@ -26,9 +26,9 @@ class ArticleRequest extends FormRequest
         $rules = [
             'title' => 'required|min:1|max:30',
             'description' => 'required|max:512',
-            'price' => 'required|min:0',
-            'quantity' => 'required|min:1|max:10000',
-            'category' => 'required',
+            'price' => 'required|min:0|regex:/^\d*(\.\d{1,2})?$/',
+            'quantity' => 'required|min:1|max:10000|integer',
+            'category' => 'required|numeric',
         ];
 
         $numImages = count($this->input('image'));
