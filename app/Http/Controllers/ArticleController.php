@@ -23,7 +23,6 @@ class ArticleController extends Controller
 
             $articlesMostViewed = Article::where('category_id', $category_id->id)->orderBy('number_of_view', 'desc')->limit(15)->get();
             $latestArticles = Article::where('category_id', $category_id->id)->latest()->limit(15)->get();
-
         } else {
             $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->limit(15)->get();
             $latestArticles = Article::latest()->limit(15)->get();
@@ -55,13 +54,8 @@ class ArticleController extends Controller
 
     public function update($id)
     {
-        $this->validate(request(), [
-            'title' => 'required|min:1|max:30',
-            'description' => 'required|max:512',
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|min:1|max:10000',
-            'category' => 'required'
-        ]);
+        $articleRequest = new ArticleRequest();
+        $this->validate(request(), $articleRequest->rules());
 
         $category = Category::where('title', request('category'))->firstOrFail();
 
@@ -93,16 +87,8 @@ class ArticleController extends Controller
         return view('article.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|min:1|max:30',
-            'description' => 'required|max:512',
-            'price' => 'required|min:0',
-            'quantity' => 'required|min:1|max:10000',
-            'category' => 'required'
-        ]);
-
         $category = Category::where('title', request('category'))->firstOrFail();
         $user = auth()->user();
 
@@ -125,7 +111,7 @@ class ArticleController extends Controller
         }
 
         foreach ($request->image as $image) {
-            $storagePath= Storage::disk('articles')->put($article->id,$image);
+            $storagePath = Storage::disk('articles')->put($article->id, $image);
 
             $newImage = new Picture([
                 'path' => $storagePath
