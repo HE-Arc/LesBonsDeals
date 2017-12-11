@@ -23,7 +23,6 @@ class ArticleController extends Controller
 
             $articlesMostViewed = Article::where('category_id', $category_id->id)->orderBy('number_of_view', 'desc')->limit(15)->get();
             $latestArticles = Article::where('category_id', $category_id->id)->latest()->limit(15)->get();
-
         } else {
             $articlesMostViewed = Article::orderBy('number_of_view', 'desc')->limit(15)->get();
             $latestArticles = Article::latest()->limit(15)->get();
@@ -65,25 +64,18 @@ class ArticleController extends Controller
 
     public function update($id)
     {
-        $this->validate(request(), [
-            'title' => 'required|min:1|max:30',
-            'description' => 'required|max:512',
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|min:1|max:10000',
-            'category' => 'required'
-        ]);
-
-        $category = Category::where('title', request('category'))->firstOrFail();
+        $articleRequest = new ArticleRequest();
+        $this->validate(request(), $articleRequest->rules());
 
         $article = Article::findOrFail($id);
         $article->title = request('title');
         $article->description = request('description');
         $article->price = request('price');
         $article->quantity = request('quantity');
-        $article->category()->associate($category);
+        $article->category_id = request('category');
         $article->save();
 
-        return redirect()->route('home');
+        return redirect()->route('manage_articles')->with('status', 'Article mis à jour !');
     }
 
     public function show($id)
@@ -103,17 +95,8 @@ class ArticleController extends Controller
         return view('article.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|min:1|max:30',
-            'description' => 'required|max:512',
-            'price' => 'required|min:0',
-            'quantity' => 'required|min:1|max:10000',
-            'category' => 'required'
-        ]);
-
-        $category = Category::where('title', request('category'))->firstOrFail();
         $user = auth()->user();
 
         $article = new Article([
@@ -121,38 +104,46 @@ class ArticleController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'quantity' => $request->quantity,
+            'category' => $request->category_id,
             'number_of_view' => 0
         ]);
 
         $article->user()->associate($user);
-        $article->category()->associate($category);
         $article->save();
 
-        //Create folder to store the image
+        if (!empty($request->image)) {
+            //Create folder to store the image
 
-        if (!file_exists('images/articles/' . $article->id)) {
-            mkdir('images/articles/' . $article->id, 0664, true);
+            if (!file_exists('images/articles/' . $article->id)) {
+                mkdir('images/articles/' . $article->id, 0664, true);
+            }
+
+            foreach ($request->image as $image) {
+                $storagePath = Storage::disk('articles')->put($article->id, $image);
+
+                $newImage = new Picture([
+                    'path' => $storagePath
+                ]);
+
+                $newImage->article()->associate($article);
+                $newImage->save();
+            }
         }
 
-        foreach ($request->image as $image) {
-            $storagePath = Storage::disk('articles')->put($article->id, $image);
-
-            $newImage = new Picture([
-                'path' => $storagePath
-            ]);
-
-            $newImage->article()->associate($article);
-            $newImage->save();
-        }
-
-        return redirect()->route('home');
+        return redirect()->route('manage_articles')->with('status', 'Article mis en vente !');
     }
 
     public function destroy($id)
     {
-        $article = Article::find($id);
+        $article = Article::findOrFail($id);
+        $images = Picture::where('article_id', $article->id)->get();
+
+        foreach ($images as $image) {
+            Storage::disk('articles')->delete($image->path);
+        }
+
         $article->delete();
 
-        return redirect()->route('manage_articles');
+        return redirect()->route('manage_articles')->with('status', 'Article supprimé !');
     }
 }

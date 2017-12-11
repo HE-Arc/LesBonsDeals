@@ -13,9 +13,9 @@
             <select class="form-control" name="category" id="category">
                 @foreach($categories as $category)
                     @if($category->title == old('category'))
-                        <option selected>{{$category->title}}</option>
+                        <option value="{{$category->id}}" selected>{{$category->title}}</option>
                     @else
-                        <option>{{$category->title}}</option>
+                        <option value="{{$category->id}}">{{$category->title}}</option>
                     @endif
                 @endforeach
             </select>
