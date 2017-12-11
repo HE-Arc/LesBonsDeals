@@ -15,7 +15,7 @@
                             class="list-group-item list-group-item-action"
                             @endif
                             id="list-home-list"
-                            href="{{route(Route::current()->getName(), ['category' => $category->title])}}"
+                            href="{{route(Route::current()->getName(), array_merge($_GET, ['category' => $category->title])) }}"
                             role="tab"
                             aria-controls="home">{{$category->title}}
                     </a>

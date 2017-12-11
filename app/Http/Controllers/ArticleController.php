@@ -37,8 +37,18 @@ class ArticleController extends Controller
 
     public function find(Request $request)
     {
-        $query = $request->input('query');
-        $articles = Article::where('title', 'like', "%$query%")->get();
+        $name = $request->input('name');
+        $cat = $request->input('category');
+        $max_price = $request->input('max_price');
+        $min_price = $request->input('min_price');
+        $filters = [['title', 'like', "%$name%"]];
+        if (isset($cat))
+            $filters[] = ['category_id', $cat];
+        if (isset($max_price))
+            $filters[] = ['price', '<', $max_price];
+        if (isset($min_price))
+            $filters[] = ['price', '>', $min_price];
+        $articles = Article::where($filters)->get();
         return view('search.articles', ['articles' => $articles]);
     }
 
@@ -125,7 +135,7 @@ class ArticleController extends Controller
         }
 
         foreach ($request->image as $image) {
-            $storagePath= Storage::disk('articles')->put($article->id,$image);
+            $storagePath = Storage::disk('articles')->put($article->id, $image);
 
             $newImage = new Picture([
                 'path' => $storagePath

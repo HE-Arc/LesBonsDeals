@@ -36,8 +36,14 @@
 
         <div class="collapse navbar-collapse" id="navContent">
 
-            <form class="form-inline ml-md-auto" action="{{route('article_find')}}">
-                <input type="text" placeholder="Recherche" class="form-control mb-2 mb-sm-0" name="query">
+            <form class="form-inline ml-md-auto" action="{{route('article_find', $_GET)}}">
+                <input type="text" placeholder="Recherche" class="form-control mb-2 mb-sm-0" name="name"
+                       @if(isset($_GET['name']))
+                       value="{{$_GET['name']}}"
+                       @else
+                       value=""
+                        @endif
+                >
                 <input type="submit" class="btn btn-outline-light ml-2"
                        value="Recherche">
             </form>
