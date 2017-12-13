@@ -53,7 +53,7 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"
                            role="button" aria-expanded="false">
-                            {{Auth::user()->name }}
+                            {{Auth::user()->username }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" role="menu">

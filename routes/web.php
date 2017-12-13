@@ -29,3 +29,4 @@ Route::get('/search', 'ArticleController@find')->name('article_find');
 
 Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
 
+Route::post('/user/udpdate','HomeController@updateUserInfo');

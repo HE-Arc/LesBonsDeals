@@ -14,6 +14,7 @@ class UserTableSeeder extends Seeder
     {
         $user = new \App\User([
             'name' => 'admin',
+            'username'=> 'admin',
             'email' => 'admin@lesbonsdeals.ch',
             'password' => bcrypt('pa$$w0rd'),
         ]);
@@ -21,6 +22,7 @@ class UserTableSeeder extends Seeder
 
         $user = new \App\User([
             'name' => 'test',
+            'username' => 'test',
             'email' => 'test@lesbonsdeals.ch',
             'password' => bcrypt('test'),
         ]);

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('include')
-    <link rel="stylesheet" href={{URL::asset('/css/owl.carousel.min.css')}}>
-    <link rel="stylesheet" href={{URL::asset('/css/owl.theme.default.min.css')}}>
+    <link rel="stylesheet" href={{secure_asset('/css/owl.carousel.min.css')}}>
+    <link rel="stylesheet" href={{secure_asset('/css/owl.theme.default.min.css')}}>
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
                                              @if(!$article->pictures->isEmpty())
                                              src="{{Storage::disk('articles')->url($article->pictures[0]->path)}}"
                                              @else
-                                             src="{{URL::asset('/images/articles/sample.png')}}"
+                                             src="{{secure_asset('/images/articles/sample.png')}}"
                                              @endif
                                              alt="Card image cap">
                                         <div class="card text-center">
@@ -58,7 +58,7 @@
                                              @if(!$article->pictures->isEmpty())
                                              src="{{Storage::disk('articles')->url($article->pictures[0]->path)}}"
                                              @else
-                                             src="{{URL::asset('/images/articles/sample.png')}}"
+                                             src="{{secure_asset('/images/articles/sample.png')}}"
                                              @endif
                                              alt="Card image cap">
                                         <div class="card text-center bg-light">
@@ -76,10 +76,9 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('include_footer')
-    <script src={{URL::asset('/js/owl.carousel.min.js')}}></script>
-    <script src={{URL::asset('/js/scripts.js')}}></script>
+    <script src={{secure_asset('/js/owl.carousel.min.js')}}></script>
+    <script src={{secure_asset('/js/scripts.js')}}></script>
 @endsection

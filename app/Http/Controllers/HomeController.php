@@ -27,24 +27,43 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('home.personal',['user'=>$user]);
+        return view('home.personal', ['user' => $user]);
     }
 
-    public function settings(){
+    public function settings()
+    {
         return view('home.manage');
     }
 
-    public function manageArticles(){
+    public function manageArticles()
+    {
         //Get all articles of the current user
         $user = Auth::user();
         $articles = $user->articles;
 
-        return view('home.articles',['articles'=> $articles]);
+        return view('home.articles', ['articles' => $articles]);
     }
 
-    public function sellArticle(){
+    public function sellArticle()
+    {
         $categories = Category::all();
 
         return view('article.create', compact('categories'));
+    }
+
+    public function updateUserInfo(Request $request)
+    {
+        $user = Auth::user();
+        $user->update([
+            'name' => $request->input_name,
+            'firstname' => $request->input_firstname,
+            'city' => $request->input_city,
+            'zip_code' => $request->input_zip_code,
+            'address' => $request->input_street,
+            'country' => $request->input_country,
+            'phone_number' => $request->input_phone
+        ]);
+
+        return back();
     }
 }
