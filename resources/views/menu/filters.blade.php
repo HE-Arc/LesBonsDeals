@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <label for="category">Catégorie</label>
                     <select class="form-control" id="category" name="category">
-                        <option value="">Non spécifiée</option>
+                        <option value="-1">Non spécifiée</option>
                         @foreach(\App\Category::all() as $cat)
                             <option value="{{$cat->id}}"
                                     @if(isset($_GET['category']) && $cat->id == $_GET['category'])

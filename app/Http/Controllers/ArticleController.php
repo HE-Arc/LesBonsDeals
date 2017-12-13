@@ -36,12 +36,19 @@ class ArticleController extends Controller
 
     public function find(Request $request)
     {
+        $request->validate([
+            'category' => 'integer',
+            'max_price' => 'numeric|min:0',
+            'min_price' => 'numeric|min:0'
+        ]);
+
         $name = $request->input('name');
         $cat = $request->input('category');
         $max_price = $request->input('max_price');
         $min_price = $request->input('min_price');
+
         $filters = [['title', 'like', "%$name%"]];
-        if (isset($cat))
+        if (isset($cat) and $cat > -1)
             $filters[] = ['category_id', $cat];
         if (isset($max_price))
             $filters[] = ['price', '<', $max_price];
