@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="{{asset('js/home.js')}}">
+    </script>
+
     <div class="container-fluid bg-light pt-4">
         <div class="row">
             <!-- MENU -->
@@ -28,7 +31,8 @@
 @if(Route::currentRouteName() === 'article.create')
                                     active
 @endif" id="list-home-list"
-                               href="{{route('article.create')}}" role="tab" aria-controls="home">Vendre un article</a>
+                               href="{{route('article.create')}}" role="tab" aria-controls="home">Vendre un
+                                article</a>
                             <a class="list-group-item list-group-item-action
 @if(Route::currentRouteName() === 'settings')
                                     active

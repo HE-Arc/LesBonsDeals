@@ -105,6 +105,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
         integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/sweetalert2@7.0.9/dist/sweetalert2.all.js"></script>
 @yield('include_footer')
 </body>
 </html>

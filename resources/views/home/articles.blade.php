@@ -30,17 +30,16 @@
                                     <i class="material-icons">create</i>Edit
                                 </button>
 
-                                <form action="{{ route('article.destroy', ['id'=>$article->id]) }}" method="POST">
+                                <form action="{{ route('article.destroy', ['id'=>$article->id]) }}" method="POST" id="delete_form">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-danger">
+                                    <button type="button" form="delete_form" class="btn btn-danger" id="{{$article->id}}" onclick="confirmDialog(this)">
                                         <i class="material-icons">delete_forever</i>Delete
                                     </button>
                                 </form>
                             </div>
                         </li>
                     @endforeach
-
                 </ul>
 
             </div>
