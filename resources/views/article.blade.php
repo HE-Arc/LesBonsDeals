@@ -53,19 +53,29 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <form>
+                <form method="POST" action="/article/{{$article->id}}/comments"
+                      enctype="multipart/form-data">
+                    {{ csrf_field() }}
+
                     <div class="form-group">
                         <label class="col-form-label" for="comment"><h4>Ajouter un commentaire</h4></label>
-                        <input type="text" class="form-control" id="comment" placeholder="Votre commentaire">
+                        <textarea class="form-control" id="comment" name="comment"
+                                  placeholder="Votre commentaire"></textarea>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary" value="submit">Commenter</button>
                     </div>
                 </form>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-sm-12 text-center">
-                <a href="#" class="btn btn-primary btn-lg " role="button">Commenter</a>
+            <div class="col-sm-12">
+                @include('layouts.errors')
             </div>
         </div>
+
         <div class="row">
             <div class="col-sm-12 mt-5">
                 <h1><i class="material-icons">perm_contact_calendar</i> Contact</h1>
