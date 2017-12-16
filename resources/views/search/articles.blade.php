@@ -35,9 +35,9 @@
                         <hr>
                     </div>
                 </div>
-                <!------------------>
+                <!--##############-->
                 <!-- Show Article -->
-                <!------------------>
+                <!--##############-->
 
                 <div id="show-list">
                     <div class="row">
@@ -71,7 +71,7 @@
                 <div>
                     {{$articles->appends(request()->except('page'))->links('pagination::bootstrap-4')}}
                 </div>
-                @if($_COOKIE['display_mode'] == 'list')
+                @if(isset($_COOKIE['display_mode']) && $_COOKIE['display_mode'] == 'list')
                     <script>
                         showAsList();
                     </script>

@@ -28,7 +28,7 @@ Route::post('/home/update', 'HomeController@updateUserInfo');
 // Search
 Route::get('/search', 'ArticleController@find')->name('article_find');
 
-Route::redirect('article', '/');
+Route::redirect('article', 'article_find');
 
 // Articles
 Route::post('/article/{article}/comments', 'CommentController@store');
