@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'update', 'destroy', 'store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,21 +43,19 @@ class CommentController extends Controller
      */
     public function store(Article $article)
     {
-        if (Auth::user()) {
-            request()->validate([
-                'comment' => 'required|min:2|max:500',
-            ]);
+        request()->validate([
+            'comment' => 'required|min:2|max:500',
+        ]);
 
-            $user = auth()->user();
+        $user = auth()->user();
 
-            $comment = new Comment([
-                'comment' => request('comment'),
-            ]);
+        $comment = new Comment([
+            'comment' => request('comment'),
+        ]);
 
-            $comment->user()->associate($user);
-            $comment->article()->associate($article);
-            $comment->save();
-        }
+        $comment->user()->associate($user);
+        $comment->article()->associate($article);
+        $comment->save();
 
         return back();
     }
