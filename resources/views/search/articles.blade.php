@@ -68,6 +68,11 @@
                         @endforeach
                     </div>
                 </div>
+                @if($_COOKIE['display_mode'] == 'list')
+                    <script>
+                        showAsList();
+                    </script>
+                @endif
             </div>
         </div>
     </div>

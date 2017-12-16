@@ -2,6 +2,10 @@ var displayedAsList;
 
 
 function showAsList() {
+    console.log('ShowAsList');
+    //Set Cookie to know the last "preference"
+    document.cookie = "display_mode=list";
+
     //Check if it's already a list
     if (displayedAsList === true)
         return;
@@ -70,6 +74,9 @@ function showAsList() {
 }
 
 function showAsCard() {
+
+    //Set Cookie to know the last "preference"
+    document.cookie = "display_mode=grid";
 
     //Return if already displayed as grid
     if (displayedAsList === false) {
