@@ -8,6 +8,7 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Picture;
 use Illuminate\Http\Request;
+use \Illuminate\Support\Facades\Input;
 
 class ArticleController extends Controller
 {
@@ -54,7 +55,7 @@ class ArticleController extends Controller
             $filters[] = ['price', '<', $max_price];
         if (isset($min_price))
             $filters[] = ['price', '>', $min_price];
-        $articles = Article::where($filters)->get();
+        $articles = Article::where($filters)->paginate(20);
         return view('search.articles', ['articles' => $articles]);
     }
 

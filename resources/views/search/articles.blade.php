@@ -68,6 +68,9 @@
                         @endforeach
                     </div>
                 </div>
+                <div>
+                    {{$articles->appends(request()->except('page'))->links('pagination::bootstrap-4')}}
+                </div>
                 @if($_COOKIE['display_mode'] == 'list')
                     <script>
                         showAsList();

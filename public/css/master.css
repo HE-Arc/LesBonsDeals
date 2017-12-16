@@ -15,7 +15,7 @@ html, body {
     background-color: #f8f9fa;
 }
 
-.bg-primary, .list-group-item.active {
+.bg-primary, .list-group-item.active, .btn-primary, .page-item.active .page-link {
     background-color: #34495e !important;
 }
 
@@ -41,4 +41,8 @@ html, body {
 
 .article {
     margin-bottom: 2em;
+}
+
+.pagination{
+    text-align: center;
 }
