@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Notification;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Article;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -56,6 +58,8 @@ class CommentController extends Controller
         $comment->user()->associate($user);
         $comment->article()->associate($article);
         $comment->save();
+
+        Mail::to($comment->article->user->email)->send(new Notification($comment->article ,$comment,"comment"));
 
         return back();
     }

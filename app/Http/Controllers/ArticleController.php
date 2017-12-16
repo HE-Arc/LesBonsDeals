@@ -6,10 +6,11 @@ use App\Article;
 use App\Category;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Picture;
 use Illuminate\Http\Request;
-use \Illuminate\Support\Facades\Input;
+use App\Mail\Notification;
 
 class ArticleController extends Controller
 {
@@ -166,5 +167,18 @@ class ArticleController extends Controller
         $article->delete();
 
         return redirect()->route('manage_articles')->with('status', 'Article supprimé !');
+    }
+
+    public function contact(Article $article){
+        request()->validate([
+            'contact' => 'required',
+        ]);
+
+        $user = auth()->user();
+        $message = request('contact');
+
+        Mail::to($article->user->email)->send(new Notification($article,$message,"contact"));
+        return back();
+
     }
 }

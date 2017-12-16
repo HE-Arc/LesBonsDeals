@@ -95,20 +95,22 @@
                 <hr>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <form>
+        <form method="POST" action="{{route('contact',$article)}}">
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label class="col-form-label" for="contact"><h4>Message pour le vendeur</h4></label>
-                        <input type="text" class="form-control" id="contact" placeholder="Votre message">
+                        <textarea class="form-control" id="contact" name="contact"
+                                  placeholder="Votre message"></textarea>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <a href="#" class="btn btn-primary btn-lg " role="button">Envoyer</a>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn btn-primary" value="submit">Envoyer</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 @endsection

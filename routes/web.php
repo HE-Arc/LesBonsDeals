@@ -33,7 +33,27 @@ Route::redirect('article', 'article_find');
 // Articles
 Route::post('/article/{article}/comments', 'CommentController@store');
 
+
 Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
 
 // User public profile
 Route::get('/user/{id}', 'UserController@show')->where('id', '[0-9]+');
+
+Route::post('/user/udpdate', 'HomeController@updateUserInfo');
+
+//Comments
+Route::post('/article/{article}/comments', 'CommentController@store');
+
+//Contact
+Route::post('/article/{article}/contact','ArticleController@contact')->name('contact');
+
+//Mail viewer tester
+Route::get('/mail-viewer/comment/{id}', function ($id) {
+    $comment = \App\Comment::findOrFail($id);
+    return new App\Mail\Notification($comment->article, $comment,"comment");
+});
+
+Route::get('/mail-viewer/contact/{message}', function ($message) {
+    $article = \App\Article::findOrFail(1);
+    return new App\Mail\Notification($article, $message,"contact");
+});
