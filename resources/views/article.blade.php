@@ -29,6 +29,7 @@
                 <p><b>Prix:</b> {{$article->price}}.-</p>
                 <p><b>Quantité disponible:</b> {{$article->quantity}}</p>
                 <p><b>Vendeur:</b> {{$article->user->name}}</p>
+                <p><b>Nombre de vues:</b> {{$article->number_of_view}}</p>
             </div>
         </div>
         <div class="row">

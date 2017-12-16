@@ -6,7 +6,7 @@
 
 @section('specific_content')
     <section class="col">
-        <form method="POST" id="form" action="{{action('HomeController@updateUserInfo') }}">
+        <form method="POST" id="form" action="{{action('HomeController@updateUserInfo')}}">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-sm-12">

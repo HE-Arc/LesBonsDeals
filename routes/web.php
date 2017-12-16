@@ -22,11 +22,10 @@ Route::get('/home/articles', 'HomeController@manageArticles')->name('manage_arti
 
 Route::get('/home/settings', 'HomeController@settings')->name('settings');
 
-//get /articles avec paramètres
+Route::post('/home/update', 'HomeController@updateUserInfo');
 
-//Route::get('/article/{n}','ArticleController@show')->where('n','[0-9]+')->name('article.show');
 Route::get('/search', 'ArticleController@find')->name('article_find');
 
-Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
+Route::redirect('article', '/');
 
-Route::post('/user/udpdate','HomeController@updateUserInfo');
+Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
