@@ -9,8 +9,36 @@ h2 {
     margin-top: 1em;
 }
 
-html, body{
+html, body {
     height: 100%;
     margin: 0;
     background-color: #f8f9fa;
+}
+
+.bg-primary, .list-group-item.active {
+    background-color: #34495e !important;
+}
+
+.debug {
+    border: solid 2px black;
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.article {
+    margin-bottom: 2em;
 }

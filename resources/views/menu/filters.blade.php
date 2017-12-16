@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="min_price">Prix minimum</label>
-                    <input class="form-control" type="number" id="min_price"
+                    <input class="form-control" type="number" id="min_price" min="0"
                            @if(isset($_GET['min_price']))
                            value="{{$_GET['min_price']}}"
                            @endif
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="max_price">Prix maximum</label>
-                    <input class="form-control" type="number" id="max_price"
+                    <input class="form-control" type="number" id="max_price" min="0"
                            @if(isset($_GET['max_price']))
                            value="{{$_GET['max_price']}}"
                            @endif
