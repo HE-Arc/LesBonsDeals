@@ -25,6 +25,8 @@
                     <input class="form-control" type="number" id="min_price" min="0"
                            @if(isset($_GET['min_price']))
                            value="{{$_GET['min_price']}}"
+                           @else
+                           value="0"
                            @endif
                            name="min_price"/>
                 </div>
@@ -33,6 +35,8 @@
                     <input class="form-control" type="number" id="max_price" min="0"
                            @if(isset($_GET['max_price']))
                            value="{{$_GET['max_price']}}"
+                           @else
+                           value="1000"
                            @endif
                            name="max_price"/>
                 </div>
