@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Picture;
 use Illuminate\Http\Request;
@@ -12,11 +13,14 @@ use \Illuminate\Support\Facades\Input;
 
 class ArticleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'edit', 'update', 'store', 'destroy']]);
+    }
+
     public function getIndex()
     {
-        //get the menu items
-        $categories = Category::orderBy('title')->get();
-
         //get latest/most viewed articles
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
@@ -33,6 +37,12 @@ class ArticleController extends Controller
             'latestArticles' => $latestArticles,
             'articlesMostViewed' => $articlesMostViewed,
         ]);
+    }
+
+    public function inc_view($article)
+    {
+        $article->number_of_view += 1;
+        $article->save();
     }
 
     public function find(Request $request)
@@ -89,6 +99,7 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Article::findOrFail($id);
+        $this->inc_view($article);
 
         return view('article', [
             'article' => $article,
@@ -98,6 +109,8 @@ class ArticleController extends Controller
 
     public function create()
     {
+        if (Auth::guest())
+            return redirect('');
         $categories = Category::all();
 
         return view('article.create', compact('categories'));

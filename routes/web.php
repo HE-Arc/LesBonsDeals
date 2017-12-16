@@ -11,25 +11,27 @@
 |
 */
 
+// index
 Route::get('/', 'ArticleController@getIndex')->name('index');
 
 Auth::routes();
 
-//User home
+// User home
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home/articles', 'HomeController@manageArticles')->name('manage_articles');
 
 Route::get('/home/settings', 'HomeController@settings')->name('settings');
 
-//get /articles avec paramètres
+Route::post('/home/update', 'HomeController@updateUserInfo');
 
-//Route::get('/article/{n}','ArticleController@show')->where('n','[0-9]+')->name('article.show');
+// Search
 Route::get('/search', 'ArticleController@find')->name('article_find');
+
+Route::redirect('article', '/');
+
+// Articles
+Route::post('/article/{article}/comments', 'CommentController@store');
 
 Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
 
-Route::post('/user/udpdate','HomeController@updateUserInfo');
-
-//Comments
-Route::post('/article/{article}/comments', 'CommentController@store');
