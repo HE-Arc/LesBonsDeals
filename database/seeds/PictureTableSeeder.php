@@ -14,38 +14,32 @@ class PictureTableSeeder extends Seeder
      */
     public function run()
     {
-        $article = Article::find(2);
+        $this->savePicture(1, "1/1_1.jpg");
+        $this->savePicture(1, "1/1_2.jpg");
+        $this->savePicture(1, "1/1_3.jpg");
+        $this->savePicture(2, "2/2_0.jpg");
+        $this->savePicture(2, "2/2_1.jpg");
+        $this->savePicture(3, "3/3_1.jpg");
+        $this->savePicture(3, "3/3_2.jpg");
+        $this->savePicture(4, "4/4_1.jpg");
+        $this->savePicture(4, "4/4_2.jpg");
+        $this->savePicture(5, "5/5_0.jpg");
+        $this->savePicture(6, "6/6_1.jpg");
+        $this->savePicture(6, "6/6_2.jpg");
+        $this->savePicture(6, "6/6_3.jpg");
+        $this->savePicture(7, "7/7_1.jpg");
+        $this->savePicture(8, "8/8_1.jpg");
+        $this->savePicture(9, "9/9_0.jpg");
+        $this->savePicture(10, "10/10_1.jpg");
+    }
 
-        $picture1 = new Picture([
-            'path' => "1/1_1.jpg"
+    public function savePicture($articleID, $path)
+    {
+        $article = Article::find($articleID);
+        $picture = new Picture([
+            'path' => $path
         ]);
-
-        $picture2 = new Picture([
-            'path' => "1/1_2.jpg"
-        ]);
-
-        $picture1->article()->associate($article);
-        $picture1->save();
-
-        $picture2->article()->associate($article);
-        $picture2->save();
-
-
-        $picture1 = new Picture([
-            'path' => "2/2_0.jpg"
-        ]);
-
-        $picture2 = new Picture([
-            'path' => "2/2_1.jpg"
-        ]);
-
-
-        $article = Article::find(1);
-        $picture1->article()->associate($article);
-        $picture1->save();
-
-        $picture2->article()->associate($article);
-        $picture2->save();
-
+        $picture->article()->associate($article);
+        $picture->save();
     }
 }

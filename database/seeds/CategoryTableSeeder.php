@@ -11,14 +11,7 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $category = new \App\Category([
-            'title' => 'Bijoux'
-        ]);
-
-        $category->save();
-
-
-        $listCategories = ['Informatique','Automobile','Animal'];
+        $listCategories = ['Animaux','Automobiles','Bijoux','Informatique','Jeux vidéos'];
         foreach ($listCategories as $category){
             DB::table('categories')->insert([
                 'title' => $category,
