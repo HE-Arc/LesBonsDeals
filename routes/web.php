@@ -35,3 +35,5 @@ Route::post('/article/{article}/comments', 'CommentController@store');
 
 Route::resource('article', 'ArticleController', ['only' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
 
+// User public profile
+Route::get('/user/{id}', 'UserController@show')->where('id', '[0-9]+');
