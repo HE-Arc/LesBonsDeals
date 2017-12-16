@@ -48,9 +48,14 @@
             <div class="col-sm-12 mt-4">
                 <h1><i class="material-icons">comment</i> Commentaires</h1>
                 <hr>
-                @foreach($comments as $comment)
-                    <p>{{$comment->user->name}}: {{$comment->comment}}</p>
-                @endforeach
+                <ul class="list-group">
+                    @foreach($comments as $comment)
+                        <li class="list-group-item">
+                            <strong>{{$comment->user->name}}</strong> - le {{$comment->created_at->format('d.m.Y')}}
+                            <p>{{$comment->comment}}</p>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
         <div class="row">
@@ -66,7 +71,13 @@
                     </div>
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary" value="submit">Commenter</button>
+
+                        <button type="submit" class="btn btn-primary" value="submit"
+                                @if(!Auth::user())
+                                disabled
+                                @endif
+                        >Commenter
+                        </button>
                     </div>
                 </form>
             </div>

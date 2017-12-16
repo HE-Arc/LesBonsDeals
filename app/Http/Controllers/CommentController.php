@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Article;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -36,19 +37,21 @@ class CommentController extends Controller
      */
     public function store(Article $article)
     {
-        request()->validate([
-            'comment' => 'required',
-        ]);
+        if (Auth::user()) {
+            request()->validate([
+                'comment' => 'required|min:2|max:500',
+            ]);
 
-        $user = auth()->user();
+            $user = auth()->user();
 
-        $comment = new Comment([
-            'comment' => request('comment'),
-        ]);
+            $comment = new Comment([
+                'comment' => request('comment'),
+            ]);
 
-        $comment->user()->associate($user);
-        $comment->article()->associate($article);
-        $comment->save();
+            $comment->user()->associate($user);
+            $comment->article()->associate($article);
+            $comment->save();
+        }
 
         return back();
     }
