@@ -22,7 +22,7 @@
                         <div class="owl-carousel">
                             @foreach($latestArticles as $article)
                                 <a href="{{route('article.show',['id' => $article->id])}}">
-                                    <div class="card mx-2" style="width: 14rem;">
+                                    <div class="card mx-2">
                                         <img class="card-img-top img-fluid "
                                              @if(!$article->pictures->isEmpty())
                                              src="{{Storage::disk('articles')->url($article->pictures[0]->path)}}"

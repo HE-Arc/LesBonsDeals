@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md text-center">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>Reset Password</h2>
+                    <h2>Reset du mot de passe</h2>
                     <hr>
                 </div>
 
