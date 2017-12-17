@@ -174,7 +174,6 @@ class ArticleController extends Controller
             'contact' => 'required',
         ]);
 
-        $user = auth()->user();
         $message = request('contact');
 
         Mail::to($article->user->email)->send(new Notification($article,$message,"contact"));
