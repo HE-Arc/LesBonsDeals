@@ -65,15 +65,22 @@
                     {{ csrf_field() }}
 
                     <div class="form-group">
-                        <label class="col-form-label" for="comment"><h4>Ajouter un commentaire</h4></label>
+                        <label class="col-form-label" for="comment">
+                            <h4>Ajouter un commentaire</h4></label>
                         <textarea class="form-control" id="comment" name="comment"
-                                  placeholder="Votre commentaire"></textarea>
+                                  @if(Auth::guest())
+                                  placeholder="Vous devez vous connecter pour écrire un commentaire."
+                                  disabled
+                                  @else
+                                  placeholder="Votre commentaire"
+                                @endif
+                        ></textarea>
                     </div>
 
                     <div class="form-group text-center">
 
                         <button type="submit" class="btn btn-primary" value="submit"
-                                @if(!Auth::user())
+                                @if(Auth::guest())
                                 disabled
                                 @endif
                         >Commenter
@@ -100,15 +107,27 @@
                 <div class="col-sm-12">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label class="col-form-label" for="contact"><h4>Message pour le vendeur</h4></label>
+                        <label class="col-form-label" for="contact">
+                            <h4>Message pour le vendeur</h4></label>
                         <textarea class="form-control" id="contact" name="contact"
-                                  placeholder="Votre message"></textarea>
+                                  @if(Auth::guest())
+                                  placeholder="Vous devez vous connecter pour contacter le vendeur."
+                                  disabled
+                                  @else
+                                  placeholder="Votre message"
+                                @endif
+                        ></textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-primary" value="submit">Envoyer</button>
+                    <button type="submit" class="btn btn-primary" value="submit"
+                            @if(Auth::guest())
+                            disabled
+                            @endif
+                    >Envoyer
+                    </button>
                 </div>
             </div>
         </form>
