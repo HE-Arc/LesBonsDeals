@@ -16,6 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        // All method will be executed only if the user is signed in.
         $this->middleware('auth');
     }
 

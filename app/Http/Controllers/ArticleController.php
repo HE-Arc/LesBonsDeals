@@ -17,7 +17,8 @@ class ArticleController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['create', 'edit', 'update', 'store', 'destroy']]);
+        // This method will be executed only if the user is signed in.
+        $this->middleware('auth', ['only' => ['create', 'edit', 'update', 'store', 'destroy', 'contact']]);
     }
 
     public function getIndex()
@@ -169,14 +170,15 @@ class ArticleController extends Controller
         return redirect()->route('manage_articles')->with('status', 'Article supprimé !');
     }
 
-    public function contact(Article $article){
+    public function contact(Article $article)
+    {
         request()->validate([
             'contact' => 'required',
         ]);
 
         $message = request('contact');
 
-        Mail::to($article->user->email)->send(new Notification($article,$message,"contact"));
+        Mail::to($article->user->email)->send(new Notification($article, $message, "contact"));
         return back();
 
     }

@@ -14,6 +14,7 @@ class CommentController extends Controller
 
     public function __construct()
     {
+        // This method will be executed only if the user is signed in.
         $this->middleware('auth', ['only' => ['create', 'update', 'destroy', 'store']]);
     }
 
