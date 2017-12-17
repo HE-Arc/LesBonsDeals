@@ -28,7 +28,7 @@
                 <p><b>Titre:</b> {{$article->  title}} </p>
                 <p><b>Prix:</b> {{$article->price}}.-</p>
                 <p><b>Quantité disponible:</b> {{$article->quantity}}</p>
-                <p><b>Vendeur:</b> <a href="/user/{{$article->user_id}}">{{$article->user->name}}</a>
+                <p><b>Vendeur:</b> <a href="/user/{{$article->user_id}}">{{$article->user->username}}</a>
                 </p>
                 <p><b>Nombre de vues:</b> {{$article->number_of_view}}</p>
             </div>

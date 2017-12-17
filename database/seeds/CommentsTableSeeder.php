@@ -31,7 +31,7 @@ class CommentsTableSeeder extends Seeder
         $article = Article::find(1);
 
         $comment = new Comment([
-            'comment' => "Je tiens 5 jours d'affiler sans le recharger ;-)"
+            'comment' => "Je tiens 5 jours d'affilés sans le recharger ;-)"
         ]);
 
         $comment->article()->associate($article);

@@ -25,7 +25,7 @@ class ArticleTableSeeder extends Seeder
         $article = new Article([
             'title' => 'Iphone 7',
             'price' => 700.0,
-            'description' => "Je déteste apple et ma femme n'as rien eu de mieux que de m'en offrir un pour Noel...",
+            'description' => "Je déteste apple et ma femme n'a rien eu de mieux à faire que de m'en offrir un pour Noël...",
             'quantity' => '1',
         ]);
         $this->addArticle($article,$category, $user);
@@ -33,7 +33,7 @@ class ArticleTableSeeder extends Seeder
         $article = new Article([
             'title' => 'Samsung Galaxy S6',
             'price' => 300.0,
-            'description' => "Je vend ce natel car je viens d'en recevoir un nouveau comme cadeau.",
+            'description' => "Je vends ce natel car je viens d'en recevoir un nouveau comme cadeau.",
             'quantity' => '1',
         ]);
         $this->addArticle($article,$category, $user);
@@ -50,7 +50,7 @@ class ArticleTableSeeder extends Seeder
         $article = new Article([
             'title' => 'GTX 690',
             'price' => 240.0,
-            'description' => "Heureux posséseur d'une nouvelle gtx1080. Elle fonctionne correctement.",
+            'description' => "Heureux détenteur d'une nouvelle GTX 1080, je peux me débarasser ce celle-ci. Elle fonctionne correctement.",
             'quantity' => '1',
         ]);
         $this->addArticle($article,$category, $user);
@@ -59,7 +59,7 @@ class ArticleTableSeeder extends Seeder
         $article = new Article([
             'title' => 'Bijoux homemade',
             'price' => 20.0,
-            'description' => "Envie d'impréssioner votre copine/maman? Offre lui ce magnifique bijoux!",
+            'description' => "Envie d'impressioner votre copine/maman? Offrez lui ce magnifique bijou !",
             'quantity' => '10',
         ]);
         $this->addArticle($article,$category, $user);
@@ -72,7 +72,7 @@ class ArticleTableSeeder extends Seeder
         $article = new Article([
             'title' => 'Nissan gtr',
             'price' => 15200.0,
-            'description' => "Je vend mon petit bébé car ma femme vas avoir un bébé... je devais choisir entre ces deux bébés... j'éspère ne pas avoir fait le mauvais choix...",
+            'description' => "Je vend mon petit bébé car ma femme va avoir un bébé... je devais choisir entre ces deux bébés... j'éspère ne pas avoir fais le mauvais choix...",
             'quantity' => '1',
         ]);
         $this->addArticle($article,$category, $user);
@@ -81,7 +81,7 @@ class ArticleTableSeeder extends Seeder
         $article = new Article([
             'title' => 'Ferrari rouge',
             'price' => 100000.0,
-            'description' => "Voiture très puissante et très séductrice. Elle m'as permis de trouvé ma femme actuelle (présente dans la photo), cepedant seul la voiture est à vendre.",
+            'description' => "Voiture très puissante et très séductrice. Elle m'as permis de trouver ma femme actuelle (présente sur la photo). Cependant, seule la voiture est à vendre.",
             'quantity' => '1',
         ]);
         $this->addArticle($article,$category, $user);
@@ -89,9 +89,9 @@ class ArticleTableSeeder extends Seeder
 
         $category = Category::where("title", "Animaux")->first();
         $article = new Article([
-            'title' => 'hamster',
+            'title' => 'Hamster',
             'price' => 0.50,
-            'description' => "Acheté pour faire plaisir à ma fille, mais elle ne l'aime plus... Même mon cobra ne l'as pas voulu manger.",
+            'description' => "Acheté pour faire plaisir à ma fille, mais elle ne l'aime plus... Même mon cobra n'a pas voulu le manger.",
             'quantity' => '1',
         ]);
         $this->addArticle($article,$category, $user);
