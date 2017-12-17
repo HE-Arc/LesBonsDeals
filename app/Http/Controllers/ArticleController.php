@@ -137,7 +137,7 @@ class ArticleController extends Controller
             //Create folder to store the image
 
             if (!file_exists('images/articles/' . $article->id)) {
-                mkdir('images/articles/' . $article->id, 0664, true);
+                mkdir('images/articles/' . $article->id, 0774, true);
             }
 
             foreach ($request->image as $image) {
